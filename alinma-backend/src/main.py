@@ -3,7 +3,7 @@ from flask_cors import CORS
 import random
 import string
 import os
-import json  # Add this import
+import json  
 from datetime import datetime
 from flask_sock import Sock
 
@@ -24,7 +24,7 @@ card_data = {
     "card_number": "83840742168075216433",
     "cvv": ''.join(random.choices(string.digits, k=3)), # Randomized initial CVV
     "expiry_date": "02/28",
-    "balance": 0,  # Card balance (separate from main account)
+    "balance": 0,  
     "is_active": True
 }
 
@@ -247,14 +247,13 @@ def update_balance():
     data = request.json
     amount = data.get('amount', 0)
     
-    if amount <= 0 or amount > 250000:  # Check against max transfer limit, not main balance
+    if amount <= 0 or amount > 250000:  
         return jsonify({
             'success': False,
             'message': 'Invalid amount or exceeds transfer limit'
         })
     
-    # Add money to card balance without deducting from main account
-    # Main account stays at 250,000 unless store transactions are made
+    
     card_data['balance'] += amount
     
     return jsonify({

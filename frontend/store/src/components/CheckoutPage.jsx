@@ -72,9 +72,9 @@ const CheckoutPage = ({ cardInfo, setCardInfo }) => {
         body: JSON.stringify(requestData) // Send both card info and product info to backend
       })
       
-      const data = await response.json() // Always parse JSON to get the message
+      const data = await response.json() 
 
-      if (!response.ok) { // Check for HTTP errors (e.g., 400 from backend)
+      if (!response.ok) { 
         setErrorMessage(data.message || 'Transaction failed due to an unknown error.')
         return
       }
@@ -83,8 +83,6 @@ const CheckoutPage = ({ cardInfo, setCardInfo }) => {
         setErrorMessage('') // Clear any previous errors
         navigate('/thank-you')
       } else {
-        // This block might be redundant if !response.ok handles most errors,
-        // but kept for explicit success: false from backend with 200 OK
         setErrorMessage(data.message || 'Sorry your card info is wrong please try again')
       }
     } catch (error) {
@@ -241,7 +239,7 @@ const CheckoutPage = ({ cardInfo, setCardInfo }) => {
                         onChange={(e) => {
                           let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
                           if (value.length > 2) {
-                            value = value.slice(0, 2) + '/' + value.slice(2, 4); // Add slash
+                            value = value.slice(0, 2) + '/' + value.slice(2, 4); 
                           }
                           setCardInfo(prev => ({...prev, expiry: value.slice(0, 5)})); // Max 5 chars (MM/YY)
                         }}

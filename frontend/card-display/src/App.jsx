@@ -15,7 +15,7 @@ function App() {
   const [displayCvv, setDisplayCvv] = useState('123')
   const [animationCvv, setAnimationCvv] = useState('123')
 
-  // API base URL - يمكن تغييرها حسب الحاجة
+ 
   const API_BASE_URL = 'http://localhost:5000'
 
   // جلب بيانات البطاقة من API
